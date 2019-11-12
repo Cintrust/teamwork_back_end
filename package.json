@@ -1,5 +1,5 @@
 {
-  "name": "untitled1",
+  "name": "teamwork_back_end",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,13 +14,14 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg": "^7.12.1",
+    "jsonwebtoken": "^8.3.0",
+    "bcrypt": "^3.0.6",
+    "dotenv": "^6.0.0",
+    "custom-env": "^1.0.2",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
-    "bcrypt": "^3.0.0",
-    "dotenv": "^6.0.0",
-    "jsonwebtoken": "^8.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "jasmine": "^3.5.0",
