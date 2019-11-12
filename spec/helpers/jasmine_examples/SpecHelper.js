@@ -1,4 +1,19 @@
+require('dotenv').config();
+const userMigration = require('../../../db/migrations/usersTableMigration');
+const pool = require('../../../db/connection');
+afterAll(function (done) {
 
+  userMigration.rollback(pool, () => {
+    done();
+  });
+
+});
+beforeAll(function (done) {
+
+  userMigration.migrate(pool, () => {
+    done();
+  });
+});
 
 beforeEach(function () {
   jasmine.addMatchers({
@@ -9,7 +24,7 @@ beforeEach(function () {
 
           return {
             pass: player.currentlyPlayingSong === expected && player.isPlaying
-          }
+          };
         }
       };
     }
