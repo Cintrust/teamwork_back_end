@@ -38,8 +38,14 @@ describe('When i make a post request ', () => {
           json: true,
         };
         Request.post(options, (error, response, body) => {
+          console.log({
+            error,
+            response,
+            body
+          });
           data.status = response.statusCode;
           data.body = typeof body === 'string' ? JSON.parse(body) : body;
+
           done();
         });
       });
