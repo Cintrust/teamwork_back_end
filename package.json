@@ -19,7 +19,6 @@
     "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.1",
     "pg": "^7.12.1",
-    "pug": "2.0.0-beta11",
     "request": "^2.88.0"
   },
   "devDependencies": {
