@@ -36,7 +36,8 @@ class Validator {
 
   isIn(values) {
     this.validatorInstance.isIn(values)
-      .withMessage(`provided value should one of the following ${values.join(', ')}`);
+      .withMessage(`provided value should one of the following ${values.join(', ')}`)
+      .bail();
     return this;
   }
 
@@ -44,10 +45,23 @@ class Validator {
     this.validatorInstance.custom((value) => db.query(`SELECT count(*) FROM ${table} WHERE  ${column} = $1`, [value])
       .then((res) => {
         if (Number(res.rows[0].count)) {
-          return Promise.reject(new Error('E-mail already in use'));
+          return Promise.reject(new Error('entry already in use'));
         }
         return true;
-      }));
+      }))
+      .bail();
+    return this;
+  }
+
+  isExisting(table, column) {
+    this.validatorInstance.custom((value) => db.query(`SELECT count(*) FROM ${table} WHERE  ${column} = $1`, [value])
+      .then((res) => {
+        if (!Number(res.rows[0].count)) {
+          return Promise.reject(new Error('entry not found'));
+        }
+        return true;
+      }))
+      .bail();
     return this;
   }
 }

@@ -2,6 +2,36 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/userModel');
 
+exports.signInUser = (req, res) => {
+  const $qry = 'select id,password from users where email = $1 LIMIT 1';
+  return UserModel.query($qry, [req.body.email])
+    .then(({ rows }) => {
+      bcrypt.compare(req.body.password, rows[0].password)
+        .then((valid) => {
+          if (!valid) {
+            throw new Error('invalid password');
+          }
+          const token = jwt.sign({ userId: rows[0].id }, process.env.SECRET, { expiresIn: '24h' });
+
+          res.status(200)
+            .json({
+              status: 'success',
+              data: {
+                token,
+                userId: rows[0].id,
+              },
+            });
+        });
+    })
+    .catch(() => {
+      res.status(401)
+        .json({
+          status: 'error',
+          error: ' invalid login details'
+        });
+    });
+};
+
 exports.createUser = (req, res) => {
   bcrypt.hash(req.body.password, 10)
     .then(

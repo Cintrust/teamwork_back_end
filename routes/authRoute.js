@@ -30,10 +30,17 @@ const create_user_input_validation = [
   new Validator('address').isString()
     .isLengthGreaterThan(3)
     .isLengthLessThan(200),
-
 ];
-router.post('/create-user',
-  authWare.adminAuth,
-  runValidation(create_user_input_validation),
-  authCtrl.createUser);
+
+const login_input_validation = [
+  new Validator('password').isString()
+    .isLengthGreaterThan(5)
+    .isLengthLessThan(30),
+  new Validator('email').isEmail()
+    .isLengthGreaterThan(3)
+    .isLengthLessThan(100)
+    .isExisting('users', 'email'),
+];
+router.post('/create-user', authWare.adminAuth, runValidation(create_user_input_validation), authCtrl.createUser);
+router.post('/signin', runValidation(login_input_validation), authCtrl.signInUser);
 module.exports = router;

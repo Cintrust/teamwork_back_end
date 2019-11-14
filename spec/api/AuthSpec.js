@@ -58,8 +58,44 @@ describe('When i make a post request ', () => {
         expect(data.body.data.userId)
           .toEqual(jasmine.any(Number));
       });
-
-
     });
+  });
+  describe('to auth/login', () => {
+    describe(' with valid data', function () {
+
+      const data = {};
+      const route = `${base_url}/auth/signin`;
+      const user = {
+        email: 'cint@cint.com',
+        password: 'simple',
+      };
+      beforeAll((done) => {
+        const options = {
+          url: route,
+          body: user,
+          json: true,
+        };
+        Request.post(options, (error, response, body) => {
+          data.status = response.statusCode;
+          data.body = typeof body === 'string' ? JSON.parse(body) : body;
+          console.log(response);
+          done();
+        });
+      });
+      it('should authenticate login', () => {
+        expect(data.status)
+          .toBe(200);
+      });
+      it('should return a login data', () => {
+        expect(data.body.status)
+          .toBe('success');
+        expect(data.body.data.token)
+          .toEqual(jasmine.any(String));
+
+        expect(data.body.data.userId)
+          .toEqual(jasmine.any(Number));
+      });
+    });
+
   });
 });
