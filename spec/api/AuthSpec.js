@@ -21,6 +21,9 @@ describe('When i make a post request ', () => {
         address: 'no 5 igbo st',
 
       };
+
+      console.log('wow');
+      console.log('help', process.env.SECRET);
       const token = jwt.sign(
         { userId: 1 },
         process.env.SECRET,
