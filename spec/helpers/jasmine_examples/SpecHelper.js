@@ -1,32 +1,41 @@
-require('dotenv').config();
+require('dotenv')
+  .config();
 const userMigration = require('../../../db/migrations/usersTableMigration');
-const pool = require('../../../db/connection');
-afterAll(function (done) {
+const userSeeder = require('../../../db/seeders/usersTableSeeder');
 
-  userMigration.rollback(pool, () => {
+let server = null;
+beforeAll(() => {
+  server = require('../../../bin/www');
+});
+afterAll(() => {
+  server.close();
+});
+afterAll((done) => {
+  userMigration.rollback(() => {
     done();
   });
-
 });
-beforeAll(function (done) {
-
-  userMigration.migrate(pool, () => {
-    done();
+beforeAll((done) => {
+  userMigration.migrate(() => {
+    userSeeder.seed()
+      .then(() => {
+        done();
+      });
   });
 });
 
-beforeEach(function () {
+beforeEach(() => {
   jasmine.addMatchers({
-    toBePlaying: function () {
+    toBePlaying() {
       return {
-        compare: function (actual, expected) {
-          var player = actual;
+        compare(actual, expected) {
+          const player = actual;
 
           return {
-            pass: player.currentlyPlayingSong === expected && player.isPlaying
+            pass: player.currentlyPlayingSong === expected && player.isPlaying,
           };
-        }
+        },
       };
-    }
+    },
   });
 });

@@ -8,17 +8,19 @@
     "test": "jasmine"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "cookie-parser": "~1.4.4",
+    "custom-env": "^1.0.2",
     "debug": "~2.6.9",
+    "dotenv": "^6.0.0",
     "express": "~4.16.1",
+    "express-validator": "^6.2.0",
     "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.3.0",
     "morgan": "~1.9.1",
     "pg": "^7.12.1",
-    "jsonwebtoken": "^8.3.0",
-    "bcrypt": "^3.0.6",
-    "dotenv": "^6.0.0",
-    "custom-env": "^1.0.2",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
