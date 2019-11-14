@@ -27,7 +27,7 @@ exports.adminAuth = (req, res, next) => {
   } catch (e) {
     return res.status(400)
       .json({
-        error: 'Invalid request!',
+        error: 'Invalid requestww!',
       });
   }
   return res;
