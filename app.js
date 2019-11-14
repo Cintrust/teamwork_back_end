@@ -3,16 +3,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-// require('custom-env').env();
 
-// const db = require('./db/connection');
-// //
-// //
-// db.query('SELECT NOW() ', (err, res) => {
-//   // pool.end();
-//   // console.log(err,res);
-// });
-//
 // console.log(process.env.APP_ENV, 'wow');
 // console.log(process.env.DB_HOST, 'wow');
 const authRouter = require('./routes/authRoute');
