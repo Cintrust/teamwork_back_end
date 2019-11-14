@@ -27,7 +27,7 @@ exports.signInUser = (req, res) => {
       res.status(401)
         .json({
           status: 'error',
-          error: ' invalid login details'
+          error: ' invalid login details',
         });
     });
 };
