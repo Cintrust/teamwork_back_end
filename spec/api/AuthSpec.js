@@ -1,9 +1,6 @@
 const Request = require('request');
 const jwt = require('jsonwebtoken');
-require('dotenv')
-  .config();
-console.log('wow');
-console.log('help', process.env.SECRET);
+
 
 describe('When i make a post request ', () => {
   const base_url = 'http://localhost:3000/v1';
@@ -26,7 +23,7 @@ describe('When i make a post request ', () => {
 
       const token = jwt.sign(
         { userId: 1 },
-        process.env.SECRET,
+        'RANDOM_TOKEN_SECRET',
         { expiresIn: '24h' },
       );
       const data = {};
