@@ -1,5 +1,7 @@
 const Request = require('request');
 const jwt = require('jsonwebtoken');
+require('dotenv')
+  .config();
 
 
 describe('When i make a post request ', () => {
@@ -19,7 +21,6 @@ describe('When i make a post request ', () => {
         address: 'no 5 igbo st',
 
       };
-      console.log(process.env.SECRET, 'secret');
       const token = jwt.sign(
         { userId: 1 },
         process.env.SECRET,
