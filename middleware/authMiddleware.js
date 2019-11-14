@@ -4,7 +4,7 @@ const db = require('../db/connection');
 exports.adminAuth = (req, res, next) => {
   try {
     const { token } = req.headers;
-    console({ secret: process.env.SECRET });
+
 
     const decodedToken = jwt.verify(token, process.env.SECRET);
     const { userId } = decodedToken;
