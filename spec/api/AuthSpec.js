@@ -41,7 +41,7 @@ describe('When i make a post request ', () => {
           console.log({
             error,
             response,
-            body
+            body,
           });
           data.status = response.statusCode;
           data.body = typeof body === 'string' ? JSON.parse(body) : body;
