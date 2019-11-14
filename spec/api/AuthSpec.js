@@ -39,7 +39,6 @@ describe('When i make a post request ', () => {
         Request.post(options, (error, response, body) => {
           data.status = response.statusCode;
           data.body = typeof body === 'string' ? JSON.parse(body) : body;
-          console.log(body);
           done();
         });
       });
@@ -52,8 +51,12 @@ describe('When i make a post request ', () => {
       it('should return a valid data', () => {
         expect(data.body.status)
           .toBe('success');
-        expect(data.body.data)
-          .toEqual(jasmine.any(Object));
+        expect(data.body.data.token)
+          .toEqual(jasmine.any(String));
+        expect(data.body.data.message)
+          .toEqual(jasmine.any(String));
+        expect(data.body.data.userId)
+          .toEqual(jasmine.any(Number));
       });
 
 

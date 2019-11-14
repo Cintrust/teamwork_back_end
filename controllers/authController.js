@@ -35,7 +35,7 @@ exports.createUser = (req, res) => {
                 data: {
                   message: 'User account successfully created',
                   token,
-
+                  userId: rows[0].id,
                 },
               });
           });
