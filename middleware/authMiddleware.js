@@ -4,8 +4,9 @@ const db = require('../db/connection');
 exports.adminAuth = (req, res, next) => {
   try {
     const { token } = req.headers;
-    const decodedToken = jwt.verify(token, process.env.SECRET);
     console({ secret: process.env.SECRET });
+
+    const decodedToken = jwt.verify(token, process.env.SECRET);
     const { userId } = decodedToken;
     db.query('SELECT * FROM users WHERE id =$1 ', [userId], (err, result) => {
       if (err) {

@@ -1,5 +1,6 @@
 const Request = require('request');
 const jwt = require('jsonwebtoken');
+// require('dotenv').config();
 
 
 describe('When i make a post request ', () => {
@@ -19,10 +20,9 @@ describe('When i make a post request ', () => {
         address: 'no 5 igbo st',
 
       };
-
       const token = jwt.sign(
         { userId: 1 },
-        'RANDOM_TOKEN_SECRET',
+        process.env.SECRET,
         { expiresIn: '24h' },
       );
       const data = {};
@@ -38,14 +38,8 @@ describe('When i make a post request ', () => {
           json: true,
         };
         Request.post(options, (error, response, body) => {
-          console.log({
-            error,
-            response,
-            body,
-          });
           data.status = response.statusCode;
           data.body = typeof body === 'string' ? JSON.parse(body) : body;
-
           done();
         });
       });

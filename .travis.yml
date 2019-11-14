@@ -16,4 +16,4 @@ env:
     - DB_HOST=localhost
     - DB_NAME=teamwork
     - DB_PASSWORD=''
-    - SECRRET=RANDOM_TOKEN_SECRET
+    - SECRET=RANDOM_TOKEN_SECRET
