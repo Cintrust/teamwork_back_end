@@ -20,7 +20,6 @@ describe('When i make a post request ', () => {
 
       };
 
-
       const token = jwt.sign(
         { userId: 1 },
         'RANDOM_TOKEN_SECRET',
