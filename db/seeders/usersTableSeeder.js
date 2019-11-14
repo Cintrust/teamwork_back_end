@@ -28,7 +28,6 @@ class UsersTableSeeder extends TableSeeder {
       },
 
     ];
-
   }
 
   seed(callback) {

@@ -62,6 +62,36 @@ class Model {
     insertHelper(values, response.callback);
     return response.result;
   }
+
+  /*  static findOne(conditions, select, callback) {
+    return Model.findCount(conditions, 1, select, callback);
+  }
+
+  static findCount(conditions, count = 500, select = ['*'], callback) {
+    if (typeof conditions !== 'object') {
+      throw new Error('an object containing condition key-values is needed for entry ');
+    }
+
+    let str = ' (';
+    let t = 1;
+    const values = [];
+
+    for (const condition of Object.keys(conditions)) {
+      str += ` ${t === 1 ? '' : 'AND'} ${condition}= $${t} `;
+      values.push(conditions[condition]);
+      t += 1;
+    }
+
+
+    str += ')';
+    const qry = `SELECT ${select.join(',')} FROM ${Model.tableName} WHERE ${str} LIMIT ${count}`;
+
+    return db.query(qry, values, callback);
+  } */
+
+  static query(qry, params, callback) {
+    return db.query(qry, params, callback);
+  }
 }
 
 Model.initialize();
