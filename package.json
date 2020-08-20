@@ -8,7 +8,7 @@
     "test": "jasmine"
   },
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "custom-env": "^1.0.2",
     "debug": "~2.6.9",
